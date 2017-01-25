@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: "aws_tag_Name=app1"
   become: yes
   become_user: root
   gather_facts: False
@@ -10,12 +10,6 @@
     - setup: # aka resume gathering facts
   roles:
     - { role: common, tags: ["common"] }
-
-- hosts: "aws_tag_Name=app1"
-  become: yes
-  become_user: root
-
-  roles:
     - { role: word-game, tags: ["word-game"] }
 
   tasks:
