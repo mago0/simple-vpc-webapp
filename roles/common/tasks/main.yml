@@ -1,0 +1,28 @@
+---
+- name: install python pip 
+  apt:
+    name: python-pip
+    state: present
+
+- name: pip install docker-py
+  pip:
+    name: docker-py
+
+- name: install dockerproject key
+  apt_key:
+    url: https://yum.dockerproject.org/gpg
+    id: 58118E89F3A912897C070ADBF76221572C52609D
+
+- name: install docker ppa
+  apt_repository:
+    repo: deb https://apt.dockerproject.org/repo/ ubuntu-trusty main
+    
+- name: install docker engine
+  apt:
+    name: docker-engine=1.13.0-0~ubuntu-trusty
+
+- name: start/enable docker service
+  service:
+    name: docker
+    state: started
+    enabled: yes

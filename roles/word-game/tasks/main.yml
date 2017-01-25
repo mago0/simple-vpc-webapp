@@ -1,0 +1,10 @@
+- name: Pull and run word-game application
+  docker:
+    name: word-game-{{ ansible_hostname }}
+    image: zsoltm/word-game:0.0.3 
+    restart_policy: always
+    state: restarted
+    ports:
+      - "0.0.0.0:80:3000"
+    expose: 3000 
+
